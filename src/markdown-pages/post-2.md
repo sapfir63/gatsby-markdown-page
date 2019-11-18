@@ -2,6 +2,7 @@
 path: "/blog/my-2-post"
 date: "2019-05-04"
 title: "My 2 blog post"
+tag: "контроллеры"
 ---
 
 ##Управление контентом

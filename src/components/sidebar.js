@@ -54,7 +54,7 @@
     <StaticQuery
       query={graphql`
         {
-          allSitePage {
+          allSitePage (sort: {fields: path, order: ASC}){
             edges {
               node {
                 id,
@@ -77,7 +77,7 @@
                 path
               }
             }) => (
-              <Link to={path} key={id} css={navItem} >{id}</Link>
+              <Link to={path} css={navItem} >{path}</Link>
             ))
           }
         </Sidebar>

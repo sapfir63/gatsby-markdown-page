@@ -1,7 +1,8 @@
 ---
-path: "/blog/my-first-post"
+path: "/blog/uzs-4-20k"
 date: "2019-05-04"
-title: "My first blog post"
+title: "УЗС-4-20К"
+tag: "грозозащита"
 ---
 
 ##Внедрение
