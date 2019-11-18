@@ -1,42 +1,56 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import React from "react";
+import { Link, StaticQuery, graphql } from "gatsby";
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
+import styled from "styled-components";
+
+import { colors } from "../utils/vars";
+  
+const Header = styled.header`
+  width: 100%;
+  height: 3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: ${colors.main};
+  color: ${colors.textSecond};
+  padding: 0.5em;
+`;
+
+const Logo = styled.img`
+  border-radius: 50%;
+  height: 100%;
+`;
+
+const logoLink = `height: 100%;`;
+
+export default () => (
+  <StaticQuery
+    query={graphql`
+      {
+        allFile(filter: { name: { eq: "logo" } }) {
+          edges {
+            node {
+              publicURL
+            }
+          }
+        }
+      }
+    `}
+    render={({
+      allFile: {
+        edges: [
+          {
+            node: { publicURL }
+          }
+        ]
+      }
+    }) => (
+      <Header>
+        <Link to="/"  css={logoLink}>
+          <Logo src={publicURL} alt="logo" />
         </Link>
-      </h1>
-    </div>
-  </header>
-)
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
+        That is header
+      </Header>
+    )}
+  />
+);
