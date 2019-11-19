@@ -34,6 +34,11 @@ export default () => (
             }
           }
         }
+        allMarkdownRemark {
+          group(field: frontmatter___tag) {
+            fieldValue
+          }
+        }
       }
     `}
     render={({
@@ -43,13 +48,19 @@ export default () => (
             node: { publicURL }
           }
         ]
-      }
+      },
+      allMarkdownRemark: { field: {fieldValue}},
     }) => (
-      <Header>
+         // Extract tag data from query  
+      //    const tags = result.data.tagsGroup.group 
+     <Header>
         <Link to="/"  css={logoLink}>
           <Logo src={publicURL} alt="logo" />
         </Link>
-        That is header
+          field.map(({fieldValue} )=> {
+            {field.fieldValue}
+          }
+             That is header 
       </Header>
     )}
   />
