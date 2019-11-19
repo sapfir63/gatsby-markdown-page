@@ -35,8 +35,12 @@ export default () => (
           }
         }
         allMarkdownRemark {
-          group(field: frontmatter___tag) {
-            fieldValue
+          edges {
+            node {
+              frontmatter {
+                tag
+              }
+            }
           }
         }
       }
@@ -49,17 +53,27 @@ export default () => (
           }
         ]
       },
-      allMarkdownRemark: { field: {fieldValue}},
+      allMarkdownRemark: { 
+        edges
+      },
     }) => (
          // Extract tag data from query  
       //    const tags = result.data.tagsGroup.group 
      <Header>
         <Link to="/"  css={logoLink}>
-          <Logo src={publicURL} alt="logo" />
+          <Logo src= {publicURL} alt="logo" />
         </Link>
-          field.map(({fieldValue} )=> {
-            {field.fieldValue}
-          }
+        {
+          edges.map(({
+            node: { 
+              frontmatter: {
+                tag
+              }
+            }
+            })=> (<Link to={tag} >{tag}</Link>
+            )
+          )
+        }
              That is header 
       </Header>
     )}
