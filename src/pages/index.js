@@ -6,6 +6,10 @@ import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = () => (
+    useEffect(() => {
+    navigate("/blog/page/1")
+    }, [])
+  
   <Layout>
     <SEO title="Home" />
     <h1>Hi people</h1>
