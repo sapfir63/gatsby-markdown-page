@@ -6,7 +6,7 @@ import { navigate } from "gatsby"
 
 const IndexPage = () => {
   useEffect(() => {
-    navigate("/")
+    navigate("blog/page/1")
   }, [])
   return (
     <Layout>

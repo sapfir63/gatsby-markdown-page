@@ -1,5 +1,5 @@
 ---
-path: "/mounting"
+path: "/blog/mounting"
 date: "2019-05-04"
 title: "УЗС-4-20К"
 tag: "монтаж"

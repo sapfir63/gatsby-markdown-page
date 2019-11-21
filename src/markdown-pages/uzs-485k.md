@@ -1,5 +1,5 @@
 ---
-path: "/uzs-485k"
+path: "/blog/uzs-485k"
 date: "2019-05-04"
 title: "УЗС-485К"
 tag: "грозозащита"

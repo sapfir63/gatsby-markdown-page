@@ -36,7 +36,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const postsPerPage = 5
   const numPages = Math.ceil(posts.length / postsPerPage)
   Array.from({ length: numPages }).forEach((_, i) => {
+    reporter.panicOnBuild(`./src/templates/blog-list-template.js.`)
     createPage({
+
       path: `/blog/page/${i + 1}`,
       component: path.resolve("./src/templates/blog-list-template.js"),
       context: {
@@ -68,4 +70,10 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     })
   }
+}
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    devtool: 'eval-source-map',
+  })
 }
