@@ -6,10 +6,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(
     `
       {
-        postRemark: allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
+        postRemark: allMarkdownRemark {
           edges {
             node {
               fields {
@@ -19,7 +16,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
         tagsGroup: allMarkdownRemark(limit: 2000) {
-          group(field: frontmatter___tags) {
+          group(field: frontmatter___tag) {
             fieldValue
           }
         }
@@ -36,8 +33,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const postsPerPage = 5
   const numPages = Math.ceil(posts.length / postsPerPage)
   Array.from({ length: numPages }).forEach((_, i) => {
-    reporter.panicOnBuild(`./src/templates/blog-list-template.js.`)
-    createPage({
+ //   reporter.panicOnBuild(`./src/templates/blog-list-template.js.`)
+   createPage({
 
       path: `/blog/page/${i + 1}`,
       component: path.resolve("./src/templates/blog-list-template.js"),
@@ -47,10 +44,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         numPages,
         currentPage: i + 1,
       },
-    })
+   })
   })
+  
 const tags = result.data.tagsGroup.group
-  tags.forEach(tag => {
+//reporter.panicOnBuild(`./src/templates/tags.js.`)
+tags.forEach(tag => {
     createPage({
       path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
       component: path.resolve("./src/templates/tags.js"),
@@ -60,6 +59,7 @@ const tags = result.data.tagsGroup.group
     })
   })
 }
+
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {

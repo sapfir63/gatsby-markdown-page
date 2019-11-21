@@ -3,7 +3,8 @@ import PropTypes from "prop-types"
 import Layout from "../components/layout"
 import _ from "lodash"
 // Components
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
+
 const Tags = ({ pageContext, data }) => {
   const { tag } = pageContext
   const { edges, totalCount } = data.allMarkdownRemark

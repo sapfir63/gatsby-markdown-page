@@ -1,6 +1,7 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql/*, Link */} from "gatsby"
 import Layout from "../components/layout"
+
 export default class BlogList extends React.Component {
   constructor(props) {
     super(props)
@@ -40,7 +41,7 @@ render() {
         <nav aria-label="Page navigation example">
           <ul className="pagination">
             {this.state.pageNumArray.map(p => (
-              <li className={`page-item ${page == p ? "active" : ""}`} key={p}>
+              <li className={`page-item ${page === p ? "active" : ""}`} key={p}>
                 <Link className={`page-link`} to={`blog/page/${p}`}>
                   {p}
                 </Link>
