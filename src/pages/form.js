@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import { FormErrors } from './formerrors';
-//import { CostBoard } from './costboard';
 import Layout from '../components/layout';
-//import './Form.css';
 
 class Form extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
       board: '',
       count: '',
-      formErrors: {email: '', password: '', board: '', count: ''},
-      emailValid: false,
-      passwordValid: false,
+      sum: '',
+      formErrors: {board: '', count: ''},
       formValid: false,
       boardValid: false,
-      countValid: false,
-      formCost: {board: '', count: ''},
+      countValid: false,  
    }
   }
 
@@ -32,46 +26,45 @@ class Form extends Component {
 
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
-    let emailValid = this.state.emailValid;
-    let passwordValid = this.state.passwordValid;
     let boardValid = this.state.boardValid;
     let countValid = this.state.countValid;
+    let sum = 0;
 
-    switch(fieldName) {
-      case 'email':
-        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
-        break;
-      
-      case 'password':
-        passwordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid ? '': ' is too short';
-        break;
+    switch (fieldName) {
       
       case 'board': 
-        if (value.match(/^([\d]{1,})$/i))
+        boardValid = value.match(/^([\d]{1,})$/i);
+        if (boardValid)
           fieldValidationErrors.board = value ;
+        else
+          fieldValidationErrors.board = ' is invalid';
         break;
       
       case 'count':
         countValid = value.match(/^([\d]{1,})$/i);
-        if(value.match(/^([\d]{1,})$/i))
+        if(countValid)
           fieldValidationErrors.count = value;
+        else
+          fieldValidationErrors.count = ' is invalid';
         break;
       
       default:
         break;
     }
+
+    sum = parseInt(fieldValidationErrors.board) * parseInt(fieldValidationErrors.count);
+
+    if (sum == NaN)
+      sum = '';
     this.setState({formErrors: fieldValidationErrors,
-                    emailValid: emailValid,
-                    passwordValid: passwordValid,
                     boardValid: boardValid,
-                    countValid: countValid
+                    countValid: countValid,
+                    sum: sum
                   }, this.validateForm);
   }
 
   validateForm() {
-    this.setState({formValid: this.state.emailValid && this.state.passwordValid});
+    this.setState({formValid: this.state.boardValid && this.state.countValid});
   }
 
   errorClass(error) {
@@ -82,44 +75,31 @@ class Form extends Component {
     return (
       <Layout>
         <form className="demoForm">
-          <h2>Sign up</h2>
-          <div className="panel panel-default">
-            <FormErrors formErrors={this.state.formErrors} />
+            <h2>Sign up</h2>
+            <div className="panel panel-default">
+              <FormErrors formErrors={this.state.formErrors} />
           </div>
-          {/* <div className="panel panel-default">
-            <FormErrors formErrors={this.state.formErrors} />
-          </div> */}
-          <div className={`form-group ${this.errorClass(this.state.formErrors.email)}`}>
-            <label htmlFor="email">Email address</label>
-            <input type="email" required className="form-control" name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.handleUserInput}  />
-          </div>
-          <div className={`form-group ${this.errorClass(this.state.formErrors.password)}`}>
-            <label htmlFor="password">Password</label>
-            <input type="password" className="form-control" name="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleUserInput}  />
-          </div>
-
-          <div className={`form-group ${this.errorClass(this.state.formCost.board)}`}>
-            <label htmlFor="board">board</label>
-            <input type="board" required className="form-control" name="board"
-              placeholder="board"
-              value={this.state.board}
-              onChange={this.handleUserInput}  />
-          </div>
-          <div className={`form-group ${this.errorClass(this.state.formCost.count)}`}>
-            <label htmlFor="board">count</label>
-            <input type="count" required className="form-control" name="count"
-              placeholder="count"
-              value={this.state.count}
-              onChange={this.handleUserInput}  />
-          </div>          
-          <button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>Sign up</button>
-          </form>
+          
+            <div className="panel panel-default">
+             <p>sum  {this.state.sum} </p>
+            </div>
+          
+            <div className={`form-group ${this.errorClass(this.state.formErrors.board)}`}>
+              <label htmlFor="board">Board</label>
+              <input type="board" required className="form-control" name="board"
+                placeholder="board"
+                value={this.state.board}
+                onChange={this.handleUserInput}  />
+            </div>
+            <div className={`form-group ${this.errorClass(this.state.formErrors.count)}`}>
+              <label htmlFor="board">Count</label>
+              <input type="count" required className="form-control" name="count"
+                placeholder="count"
+                value={this.state.count}
+                onChange={this.handleUserInput}  />
+            </div>          
+            <button type="submit" className="btn btn-primary" disabled={this.state.formValid}>Sign up</button>
+            </form>
         </Layout>
     )
   }
