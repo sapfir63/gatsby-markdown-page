@@ -13,7 +13,7 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import Sidebar from "./sidebar";
 import "./layout.css"
-import "./ootstrap.min.css"
+import "./bootstrap.min.css"
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`

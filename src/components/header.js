@@ -80,7 +80,7 @@ export default () => (
             })=> (<Link to="{tag}" >{tag}</Link>
             )
           )
-        }, */}
+        }, }
         {/* {
           group.map(({
             fieldValue
