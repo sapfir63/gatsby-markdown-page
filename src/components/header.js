@@ -6,11 +6,8 @@ import styled from "styled-components";
 import { colors } from "../utils/vars";
   
 const Header = styled.header`
+  height: 15em;
   width: 100%;
-  height: 3em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: ${colors.main};
   color: ${colors.textSecond};
   padding: 0.5em;
@@ -18,7 +15,7 @@ const Header = styled.header`
 
 const Logo = styled.img`
   border-radius: 50%;
-  height: 100%;
+  height: 50%;
 `;
 
 const logoLink = `height: 100%;`;
@@ -63,12 +60,7 @@ export default () => (
     }) => (
          // Extract tag data from query  
       //    const tags = result.data.tagsGroup.group 
-        <Header>
-         <Link to="/"  css={logoLink}>
-          <Logo src= {publicURL} alt="logo" />
-          </Link>
-
-            
+        <Header>           
 
         {/* {
           edges.map(({
@@ -88,14 +80,18 @@ export default () => (
               <Link to={fieldValue} >{fieldValue}</Link>
            ))
         } */}
-        That is header 
-            
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                   
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container">
           <a class="navbar-brand" href="#">Navbar</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
+          {/* <a class={logoLink}   href="#"><Logo src= {publicURL} alt="logo" /></a> */}
+          <Link to="/"  css={logoLink}>
+            <Logo src= {publicURL} alt="logo" />
+          </Link> 
+          {/* <a class={logoLink} href="#"><img src={publicURL} /></a> */}
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
@@ -124,6 +120,7 @@ export default () => (
             </ul>
 
           </div>
+        </div>
         </nav>
       </Header>
     )}
