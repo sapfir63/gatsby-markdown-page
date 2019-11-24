@@ -12,6 +12,7 @@ import PropTypes from "prop-types"
 
 import Header from "./header"
 import Sidebar from "./sidebar";
+import Footer from "./footer";
 import "./layout.css"
 import "./bootstrap.min.css"
 
@@ -33,22 +34,29 @@ const Layout = ({ children }) => {
 
         <script src="../js/bootstrap.min.js"></script>
         </Helmet>
-      <Header />
-      <Sidebar />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+
+      <div  class="container-fluid">
+        <div class="row">
+            <Header />  
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <div class="row">
+              <Sidebar />    
+              </div>   
+            <div class="row">  
+              Sidebar2
+            </div>
+          </div> 
+          <div class="col-6"> 
+            <main>{children}</main>
+          </div> 
+        </div> 
+        <div class="row">
+          <div class="col"> 
+            <Footer />
+            </div> 
+          </div> 
       </div>
     </>
   )

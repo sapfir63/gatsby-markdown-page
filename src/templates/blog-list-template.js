@@ -38,7 +38,7 @@ render() {
             </div>
           )
         })}
-        <nav aria-label="Page navigation example">
+        {/* <nav aria-label="Page navigation example">
           <ul className="pagination">
             {this.state.pageNumArray.map(p => (
               <li className={`page-item ${page === p ? "active" : ""}`} key={p}>
@@ -48,7 +48,7 @@ render() {
               </li>
             ))}
           </ul>
-        </nav>
+        </nav> */}
       </Layout>
     )
   }
