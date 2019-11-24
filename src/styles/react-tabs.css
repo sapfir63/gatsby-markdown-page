@@ -54,3 +54,15 @@
 .react-tabs__tab-panel--selected {
   display: block;
 }
+
+.block { 
+  text-align: justify;
+  background: lightcyan;
+  padding: 5px;
+  padding-right: 20px; 
+  border: solid 1px black; 
+  border-radius: 4px;
+ }
+ p {
+   text-indent: 20px; /* Отступ первой строки в пикселах */
+ }
