@@ -6,64 +6,77 @@
  */
 
 import React from "react"
-import { Helmet } from "react-helmet"
-import PropTypes from "prop-types"
-//import { useStaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
+
+import { Container, Row, Col } from "react-bootstrap"
 
 import Header from "./header"
+import Navbar from "./navBar"
 import Sidebar from "./sidebar";
-import Footer from "./footer";
-import "../styles/layout.css"
-import "../styles/bootstrap.min.css"
+//import Footer from "./footer";
 
-const Layout = ({ children }) => {
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
 
-  return (
-    <>
-      <Helmet>
-        <script src="../js/jquery-3.3.1.js"></script>
+const Layout = ({ children }) => (
+  <StaticQuery
+    query={graphql`
+      query SiteTitleQuery {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `}
 
-        <script src="../js/bootstrap.min.js"></script>
-      </Helmet>
+    render={data => (
+      <>
 
-      <div  class="container-fluid">
-        <div class="row">
-            <Header />  
-        </div>
-        <div class="row">
-          <div class="col-3">
-            <div class="row">
-              <Sidebar />    
-              </div>   
-            <div class="row">  
-              Sidebar2
-            </div>
-          </div> 
-          <div class="col-6"> 
-            <main>{children}</main>
-          </div> 
-        </div> 
-        <div class="row">
-          <div class="col"> 
-            <Footer />
-            </div> 
-          </div> 
-      </div>
+      <Container fluid className="px-0 main">
+        <Row noGutters className="justify-content-center">
+          <Col className="text-center">
+            <Header siteTitle={data.site.siteMetadata.title} />
+          </Col>
+        </Row>
+        <Navbar pageInfo={data.site.siteMetadata.title} />
+
+        <Row noGutters>
+          <Col sm={4}>
+
+              <Sidebar />
+
+          
+
+          </Col>
+
+
+       
+          <Col>
+            <Container sm={8}>
+              <main>{children}</main>
+            </Container>
+          </Col>
+      
+          </Row>
+        </Container>
+
+      <Container fluid className="px-0">
+        <Row noGutters>
+          <Col className="footer-col">
+            <footer>
+              <span>
+                © {new Date().getFullYear()}, Built with
+                  {` `}
+                <a href="https://www.gatsbyjs.org">GatsbyJS</a>, originally coded by
+                  {` `}<a href="https://github.com/billyjacoby">Billy Jacoby</a>
+                <br />
+                {` `}Enhanced by <a href="https://twitter.com/Sm0keDev">Sm0ke</a>
+              </span>
+            </footer>
+          </Col>
+        </Row>
+      </Container>
     </>
-  )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
+  )}
+/>
+)
 export default Layout
