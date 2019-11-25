@@ -54,7 +54,7 @@ class Form extends Component {
 
     sum = parseInt(fieldValidationErrors.board) * parseInt(fieldValidationErrors.count);
 
-    if (sum == NaN)
+    if (isNaN(sum))
       sum = '';
     this.setState({formErrors: fieldValidationErrors,
                     boardValid: boardValid,

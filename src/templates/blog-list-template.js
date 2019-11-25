@@ -1,6 +1,7 @@
 import React from "react"
-import { graphql, Link} from "gatsby"
+import { graphql/*, Link*/} from "gatsby"
 import Layout from "../components/layout"
+import { Container, Row, Col } from "react-bootstrap"
 
 export default class BlogList extends React.Component {
   constructor(props) {
@@ -24,10 +25,11 @@ export default class BlogList extends React.Component {
   }
 render() {
     const posts = this.props.data.allMarkdownRemark.edges
-    const pathNames = this.props.location.pathname.split("/")
-    const page = pathNames[pathNames.length - 1]
+  //  const pathNames = this.props.location.pathname.split("/")
+  //  const page = pathNames[pathNames.length - 1]
     return (
       <Layout>
+         <Container className="text-center">
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
@@ -49,6 +51,7 @@ render() {
             ))}
           </ul>
         </nav> */}
+          </Container>
       </Layout>
     )
   }

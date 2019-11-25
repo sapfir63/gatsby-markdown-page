@@ -5,20 +5,19 @@
   import { colors } from "../utils/vars"
 
    const Sidebar = styled.section`
-    height: 100%;
+
     background-color: ${colors.second};
     color: ${colors.textMain};
   `
 
-  const navItem = `
-    display: flex;
-    align-items: center;
-    margin: 0 1em 0 2em;
-    padding: 0.5em 0;
-    border-bottom: 0.05em solid ${colors.mainHalf};
-    postion: relative;
-    color: ${colors.textBody};
-    text-decoration: none;
+   const navItem = `
+  
+     align-items: center;
+     margin: 0 1em 0 2em;
+     padding: 0.5em 0;
+     border-bottom: 0.05em solid ${colors.mainHalf};
+     postion: relative;
+     color: ${colors.textBody}; 
 
     &:before {
       content: '';
@@ -42,7 +41,7 @@
         transform: scale(1);
       }
     }
-  `
+   `
 
   export default () => (
     <StaticQuery
@@ -71,7 +70,7 @@
                 path
               }
             }) => (
-              <Link to={path} css={navItem} >{path}</Link>
+              <Link to={path} css={navItem} >{path}<br/></Link>
             ))
           }
         </Sidebar>
