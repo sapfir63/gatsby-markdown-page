@@ -43,38 +43,33 @@
     }
    `
 
-  export default () => (
-    <StaticQuery
-      query={graphql`
+export default () => (
+  <StaticQuery
+    query={graphql`
         {
-          allSitePage (sort: {fields: path, order: ASC}){
-            edges {
-              node {
-                id,
-                path
-              }
+          tagsGroup: allMarkdownRemark {
+            group(field: frontmatter___tag) {
+              fieldValue
             }
           }
         }
       `}
-      render={({
-        allSitePage: {
-          edges
-        }
-      }) => (
+    render={({
+      allMarkdownRemark: {
+        group
+      }
+    }) =>
+      (
         <Sidebar>
           {
-            edges.map(({
-              node: {
-                id,
-                path
-              }
-            }) => (
-              <Link to={path} css={navItem} >{path}<br/></Link>
-            ))
+            group.map(({ field: { frontmatter___tag: { fieldValue } } }) =>
+              (            
+                { fieldValue }
+              )           
+            )   
           }
-        </Sidebar>
-      )}
-    />
-
-  )
+      </Sidebar>
+      )         
+    }  
+  />
+);

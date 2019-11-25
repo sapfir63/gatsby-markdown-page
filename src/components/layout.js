@@ -41,15 +41,9 @@ const Layout = ({ children }) => (
 
         <Row noGutters>
           <Col sm={4}>
+              <Sidebar />      
 
-              <Sidebar />
-
-          
-
-          </Col>
-
-
-       
+          </Col>       
           <Col>
             <Container sm={8}>
               <main>{children}</main>
