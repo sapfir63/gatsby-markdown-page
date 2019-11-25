@@ -1,8 +1,11 @@
 ---
-path: ""
-date: "2019-05-04"
+level: "0"
+tag:   "Услуги"
+type:  ""
 title: "Монтаж плат"
-tag: "услуги"
+brief: ""
+date: "2019-11-24"
+path: ""
 ---
 				
 <div class ="block">
